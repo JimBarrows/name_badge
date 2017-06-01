@@ -50,8 +50,8 @@ void setup()
   Serial.println(lineCount);
 
   lines = malloc( lineCount * sizeof(char*));
-  Serial.println("         1234567890123456");
   for (int curLineInMessage = 0; curLineInMessage < lineCount; curLineInMessage++) {
+    lines[curLineInMessage] = malloc(MaxCharWidth * sizeof(char) + 1);
     char curLine[MaxCharWidth];
     memset( curLine, ' ', MaxCharWidth);
     Serial.print("chars left: ");
@@ -80,11 +80,11 @@ void printLine(char message[], int lineNumber) {
 void loop()
 {
 
-    for (int curLineNumber = 0; curLineNumber < lineCount; curLineNumber++) {
-  
-      printLine( lines[curLineNumber], 0);
-      delay(1000);
-    }
+  for (int curLineNumber = 0; curLineNumber < lineCount; curLineNumber++) {
+
+    printLine( lines[curLineNumber], 0);
+    delay(1000);
+  }
 
   //  lcd_key = read_LCD_buttons();  // read the buttons
 
