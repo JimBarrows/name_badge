@@ -17,7 +17,7 @@ int adc_key_in  = 0;
 #define btnSELECT 4
 #define btnNONE   5
 
-char message[] = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+char message[] = "Hi my name is   Jim Barrows.    My email is     Jim.Barrows@gmail.com";
 char blank[MaxCharWidth];
 int messageLength = strlen(message);
 int lineCount = 2;
@@ -53,18 +53,13 @@ void setup()
   for (int curLineInMessage = 0; curLineInMessage < lineCount; curLineInMessage++) {
     lines[curLineInMessage] = malloc(MaxCharWidth * sizeof(char) + 1);
     char curLine[MaxCharWidth];
-    memset( curLine, ' ', MaxCharWidth);
-    Serial.print("chars left: ");
-    Serial.println(&message[curLineInMessage * MaxCharWidth]);
+    memset( curLine, ' ', MaxCharWidth);    
     if ( strlen(&message[curLineInMessage * MaxCharWidth]) > MaxCharWidth) {
       memcpy( curLine, &message[curLineInMessage * MaxCharWidth], MaxCharWidth);
     } else {
-      memcpy(curLine, &message[curLineInMessage * MaxCharWidth], strlen(message[curLineInMessage * MaxCharWidth]));
+      memcpy(curLine, &message[curLineInMessage * MaxCharWidth], strlen(&message[curLineInMessage * MaxCharWidth]));
     }
-    curLine[MaxCharWidth] = '\0';
-    Serial.print("curLine: " );
-    Serial.print(curLine);
-    Serial.println("|");
+    curLine[MaxCharWidth] = '\0';    
     strcpy( lines[curLineInMessage], curLine);
     Serial.print("lines[x]: " );
     Serial.print(lines[curLineInMessage]);
